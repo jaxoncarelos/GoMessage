@@ -40,7 +40,7 @@ func (g *GoMessage) ReadMessage(conn net.Conn) {
 		return
 	}
 	parts := strings.Split(string(buf[:n]), ":")
-	if len(parts) != 3 {
+	if len(parts) != 2 {
 		g.Disconnect(conn)
 		return
 	}
