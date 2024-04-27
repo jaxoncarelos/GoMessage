@@ -23,7 +23,7 @@ func TestAddCommand(t *testing.T) {
 	}
 	server.OnConnect = func(conn net.Conn) {
 	}
-	server.AddCommand("p", func(str string) error {
+	server.AddCommand("p", func(conn net.Conn, str string) error {
 		log.Println("Hello from command: ", str)
 		return nil
 	})

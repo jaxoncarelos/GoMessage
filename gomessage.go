@@ -45,7 +45,7 @@ func (g *GoMessage) ReadMessage(conn net.Conn) {
 		return
 	}
 	if f, ok := g.Commands[parts[0]]; ok {
-		err := f(parts[1] + ":" + parts[2])
+		err := f(conn, parts[1]+":"+parts[2])
 		if err != nil {
 			conn.Write([]byte(err.Error()))
 		}
@@ -70,5 +70,5 @@ func (g *GoMessage) AddCommand(alias string, f CommandFunc) {
 	g.Commands[alias] = f
 }
 
-// command func should take in a string and return an errora and return an error
-type CommandFunc func(string) error
+// command func should take in a string and return an error
+type CommandFunc func(net.Conn, string) error
